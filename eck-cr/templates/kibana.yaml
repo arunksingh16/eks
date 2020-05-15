@@ -3,6 +3,7 @@ apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
 metadata:
   name: kibana
+  namespace: elastic-system
   labels:
 {{- include "eck-cr.labels" . | nindent 4 }}
 spec:
@@ -28,7 +29,8 @@ spec:
   {{- end }}
 
   {{- if .Values.kibana.elasticsearchRef }}
-  elasticsearchRef: {{ .Values.elasticsearch.name }}
+  elasticsearchRef:
+    name: {{ toYaml .Values.elasticsearch.name }}
   {{- end }}
 
   {{- if .Values.kibana.podTemplate }}
