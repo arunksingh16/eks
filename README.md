@@ -1,6 +1,6 @@
 
-# This is repository for ECK Helm and based on 8gears/eck-helm-chart
-
+# Introduction
+This is repository for ECK Helm and based on 8gears/eck-helm-chart
 
 
 ## Support Commands
@@ -25,8 +25,10 @@ helm show values elastic/elasticsearch
 helm get manifest eck-crd
 helm history eck-cr
 helm uninstall eck-cr
+
 # Online validation 
-	helm install eck-cr . --debug --dry-run
-	helm install eck-cr . --debug --dry-run 2>&1 | less
-	helm upgrade eck-cr . --dry-run
+helm install eck-cr . --debug --dry-run
+helm install eck-cr . --debug --dry-run 2>&1 | less
+helm upgrade eck-cr . --dry-run
+
 ```
