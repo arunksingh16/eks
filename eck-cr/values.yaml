@@ -1,8 +1,25 @@
 # Default values for eck-cr.
 # This is a YAML-formatted file.
+
+fullnameOverride: ""
+protocol: http
+httpPort: 9200
+transportPort: 9300
+
+service:
+  labels: {}
+  labelsHeadless: {}
+  type: ClusterIP
+  nodePort: ""
+  annotations: {}
+  httpPortName: http
+  transportPortName: transport
+  loadBalancerIP: ""
+  loadBalancerSourceRanges: []
+
 elasticsearch:
   enabled: true
-  name: elasticsearch-cluster
+  name: "elasticsearch"
   version: 7.6.1
   http:
   image:  
@@ -33,7 +50,7 @@ elasticsearch:
 
 
 kibana:
-  enabled: true
+  enabled: false
   version: 7.6.1
   http:
     service:
@@ -50,9 +67,24 @@ kibana:
       - name: kibana
         resources:
           requests:
-            memory: 1Gi
+            memory: 512Mi
             cpu: 0.5
           limits:
-            memory: 1Gi
+            memory: 512Mi
             cpu: 0.5
   secureSettings:
+
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+

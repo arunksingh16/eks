@@ -1,0 +1,14 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+To learn more about the release, try:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
+  $ USER=$(kubectl get secret -n elastic-system | grep elastic-user | awk {'print $1'})
+  $ echo $USER
+  $ PASSWORD=$(kubectl get secret ${USER} -n elastic-system -o json | grep \"elastic\"\: | awk {'print $2'} | sed -e 's/^"//' -e 's/"$//' | base64 -d)
+  $ echo $PASSWORD
+  $ curl -u "elastic:$PASSWORD" -k "https://localhost:9200"
+
